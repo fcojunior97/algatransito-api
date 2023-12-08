@@ -17,7 +17,7 @@ public class RegistroProprietarioService {
     public Proprietario salvar(Proprietario proprietario) {
 
         boolean emailEmUso = proprietarioRepository.findByEmail(proprietario.getEmail())
-                .filter(p-> !p.equals(proprietargit io))
+                .filter(p-> !p.equals(proprietario))
                 .isPresent();
 
         if(emailEmUso) {
