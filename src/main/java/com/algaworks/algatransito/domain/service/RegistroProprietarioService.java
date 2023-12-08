@@ -17,11 +17,11 @@ public class RegistroProprietarioService {
     public Proprietario salvar(Proprietario proprietario) {
 
         boolean emailEmUso = proprietarioRepository.findByEmail(proprietario.getEmail())
-                .filter(p-> !p.equals(proprietario))
+                .filter(p-> !p.equals(proprietargit io))
                 .isPresent();
 
         if(emailEmUso) {
-            throw new NegocioException("Este email não está disponivel, tente novamente!");
+            throw new NegocioException("Este email não está disponivel, tente novamente com outro e-mail válido!");
         }
 
         return proprietarioRepository.save(proprietario);
