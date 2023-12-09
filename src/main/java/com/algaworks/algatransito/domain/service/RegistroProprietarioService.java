@@ -31,4 +31,9 @@ public class RegistroProprietarioService {
     public void excluir(Long proprietarioId) {
         proprietarioRepository.deleteById(proprietarioId);
     }
+
+    public Proprietario buscarOuFalhar(Long idProprietario) {
+        return proprietarioRepository.findById(idProprietario)
+                .orElseThrow(() -> new NegocioException("Erro! Não existe registro de proprietario com esse id"));
+    }
 }
