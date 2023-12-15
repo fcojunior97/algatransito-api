@@ -1,6 +1,7 @@
 package com.algaworks.algatransito.api.controller;
 
-import com.algaworks.algatransito.domain.exception.NegocioException;
+import com.algaworks.algatransito.api.assembler.VeiculoAssembler;
+import com.algaworks.algatransito.api.representationmodel.VeiculoModel;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
 import com.algaworks.algatransito.domain.service.VeiculoService;
@@ -22,22 +23,26 @@ public class VeiculoController {
     @Autowired
     private VeiculoService veiculoService;
 
+    @Autowired
+    private VeiculoAssembler veiculoAssembler;
+
     @GetMapping
-    public List<Veiculo> listar() {
-        return veiculoRepository.findAll();
+    public List<VeiculoModel> listar() {
+        return veiculoAssembler.toCollectionModel(veiculoRepository.findAll());
     }
 
     @GetMapping("/{veiculoId}")
-    public ResponseEntity<Veiculo> buscar (@PathVariable Long veiculoId){
+    public ResponseEntity<VeiculoModel> buscar (@PathVariable Long veiculoId){
         return veiculoRepository.findById(veiculoId)
+                .map(veiculo -> veiculoAssembler.toModel(veiculo))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Veiculo cadastrar (@RequestBody @Valid Veiculo veiculo){
-        return veiculoService.cadastrar(veiculo);
+    public VeiculoModel cadastrar (@RequestBody @Valid Veiculo veiculo){
+        return veiculoAssembler.toModel(veiculoService.cadastrar(veiculo));
     }
 
 }
