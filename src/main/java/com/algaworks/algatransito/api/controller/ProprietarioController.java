@@ -1,5 +1,9 @@
 package com.algaworks.algatransito.api.controller;
 
+import com.algaworks.algatransito.api.assembler.ProprietarioAssembler;
+import com.algaworks.algatransito.api.disassembler.ProprietarioDisassembler;
+import com.algaworks.algatransito.api.representationmodel.ProprietarioModel;
+import com.algaworks.algatransito.api.representationmodel.input.ProprietarioInput;
 import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
@@ -22,22 +26,30 @@ public class ProprietarioController {
     @Autowired
     private RegistroProprietarioService registroProprietarioService;
 
+    @Autowired
+    private ProprietarioAssembler proprietarioAssembler;
+
+    @Autowired
+    private ProprietarioDisassembler proprietarioDisassembler;
+
     @GetMapping()
-    public List<Proprietario> listar() {
-        return proprietarioRepository.findAll();
+    public List<ProprietarioModel> listar() {
+        return proprietarioAssembler.toCollectionModel(proprietarioRepository.findAll());
     }
 
     @GetMapping("/{proprietarioId}")
-    public ResponseEntity<Proprietario> buscar(@PathVariable Long proprietarioId) {
+    public ResponseEntity<ProprietarioModel> buscar(@PathVariable Long proprietarioId) {
         return proprietarioRepository.findById(proprietarioId)
+                .map(proprietario -> proprietarioAssembler.toModel(proprietario))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public Proprietario cadastrar(@RequestBody @Valid Proprietario proprietario) {
-        return registroProprietarioService.salvar(proprietario);
+    public ProprietarioModel cadastrar(@RequestBody @Valid ProprietarioInput proprietarioInput) {
+        Proprietario proprietario = proprietarioDisassembler.toEntity(proprietarioInput);
+        return proprietarioAssembler.toModel(registroProprietarioService.salvar(proprietario));
     }
 
     @PutMapping("/{proprietarioId}")
