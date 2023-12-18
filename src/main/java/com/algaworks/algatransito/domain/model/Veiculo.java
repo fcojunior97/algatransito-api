@@ -14,6 +14,8 @@ import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -37,5 +39,8 @@ public class Veiculo {
 
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
+
+    @OneToMany(mappedBy = "veiculo")
+    private List<Autuacao> autuacoes = new ArrayList<>();
 
 }
