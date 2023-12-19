@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.api.exceptionhandler;
 
+import com.algaworks.algatransito.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algatransito.domain.exception.NegocioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -39,6 +40,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, problemDetail, headers, status, request);
     }
 
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ProblemDetail handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.CONFLICT);
+        problemDetail.setTitle("O recurso está em uso");
+        problemDetail.setType(URI.create("https://algatransito.com/erros/recurso-em-uso"));
+
+        return problemDetail;
+    }
+
     @ExceptionHandler(NegocioException.class)
     public ProblemDetail handleNegocioException(NegocioException e) {
 
@@ -49,12 +60,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ProblemDetail handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+    @ExceptionHandler(EntidadeNaoEncontradaException.class)
+    public ProblemDetail handleEntidadeNaoEncontradaException(EntidadeNaoEncontradaException e) {
 
-        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.CONFLICT);
-        problemDetail.setTitle("O recurso está em uso");
-        problemDetail.setType(URI.create("https://algatransito.com/erros/recurso-em-uso"));
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        problemDetail.setTitle(e.getMessage());
+        problemDetail.setType(URI.create("https://algatransito.com/erros/recurso-nao-encontrado"));
 
         return problemDetail;
     }
