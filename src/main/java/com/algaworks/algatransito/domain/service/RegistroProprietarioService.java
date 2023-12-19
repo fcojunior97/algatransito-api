@@ -34,6 +34,6 @@ public class RegistroProprietarioService {
 
     public Proprietario buscarOuFalhar(Long idProprietario) {
         return proprietarioRepository.findById(idProprietario)
-                .orElseThrow(() -> new NegocioException("Erro! Não existe registro de proprietario com esse id"));
+                .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse ID"));
     }
 }

@@ -46,10 +46,10 @@ public class VeiculoService {
         novoVeiculo.setDataCadastro(OffsetDateTime.now());
 
         return veiculoRepository.save(novoVeiculo);
+    }
 
-
-
-
-
+    public Veiculo buscarOuFalhar(Long veiculoId) {
+        return veiculoRepository.findById(veiculoId)
+                .orElseThrow(() -> new NegocioException("Veiculo não encontrado com esse ID"));
     }
 }
