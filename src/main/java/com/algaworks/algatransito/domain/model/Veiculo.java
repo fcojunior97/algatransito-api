@@ -30,7 +30,7 @@ public class Veiculo {
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
 
-    @OneToMany(mappedBy = "veiculo")
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
     private List<Autuacao> autuacoes = new ArrayList<>();
 
 
