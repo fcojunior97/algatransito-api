@@ -1,7 +1,5 @@
 package com.algaworks.algatransito.api.representationmodel.input;
 
-import com.algaworks.algatransito.api.representationmodel.ProprietarioResumoModel;
-import com.algaworks.algatransito.domain.model.StatusVeiculo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +12,7 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-public class VeiculoInputModel {
+public class VeiculoInput {
 
     @Valid
     @NotNull

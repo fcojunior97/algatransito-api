@@ -1,20 +1,18 @@
 package com.algaworks.algatransito.domain.service;
 
+import com.algaworks.algatransito.api.disassembler.VeiculoDisassembler;
+import com.algaworks.algatransito.api.representationmodel.input.VeiculoInput;
 import com.algaworks.algatransito.domain.exception.EntidadeNaoEncontradaException;
 import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.model.StatusVeiculo;
 import com.algaworks.algatransito.domain.model.Veiculo;
-import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.util.Optional;
 
 @Service
 public class VeiculoService {
@@ -24,6 +22,9 @@ public class VeiculoService {
 
     @Autowired
     private RegistroProprietarioService registroProprietarioService;
+
+    @Autowired
+    private VeiculoDisassembler veiculoDisassembler;
 
     @Transactional
     public Veiculo cadastrar(Veiculo novoVeiculo) {
@@ -47,6 +48,12 @@ public class VeiculoService {
         novoVeiculo.setDataCadastro(OffsetDateTime.now());
 
         return veiculoRepository.save(novoVeiculo);
+    }
+
+    @Transactional
+    public Veiculo atualizarDadosVeiculo(VeiculoInput veiculoInput, Veiculo veiculoAtual) {
+        veiculoDisassembler.copyToDomainObject(veiculoInput, veiculoAtual);
+        return veiculoRepository.save(veiculoAtual);
     }
 
     public Veiculo buscarOuFalhar(Long veiculoId) {
