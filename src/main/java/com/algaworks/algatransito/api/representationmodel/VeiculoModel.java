@@ -19,8 +19,6 @@ public class VeiculoModel {
     private String modelo;
     private CorVeiculo cor;
     private String placa;
-    private OffsetDateTime dataCadastro;
-    private OffsetDateTime dataApreensao;
     private String renavam;
     private String chassi;
     private String anoFabricacaoModelo;
@@ -36,5 +34,7 @@ public class VeiculoModel {
     private StatusVeiculo status;
     private String licenciamento;
     private String observacao;
+    private OffsetDateTime dataCadastro;
+    private OffsetDateTime dataApreensao;
     private List<Autuacao> autuacoes = new ArrayList<>();
 }

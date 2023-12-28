@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.api.representationmodel.input;
 
+import com.algaworks.algatransito.domain.model.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,13 +24,66 @@ public class VeiculoInput {
     private String marca;
 
     @NotBlank
-    @Size(max=20)
+    @Size(max=60)
     private String modelo;
+
+    @NotNull
+    private CorVeiculo cor;
 
     @NotBlank
     @Pattern(regexp = "[A-Z]{3}[0-9][0-9A-Z][0-9]{2}")
     private String placa;
 
-    private OffsetDateTime dataApreensao;
+    @NotBlank
+    @Size(max=11)
+    private String renavam;
+
+    @NotBlank
+    @Size(max=17)
+    private String chassi;
+
+    @NotBlank
+    @Size(max=15)
+    private String anoFabricacaoModelo;
+
+    @NotNull
+    private TipoVeiculo tipo;
+
+    @NotBlank
+    @Size(max=20)
+    private String combustivel;
+
+    @NotNull
+    private CategoriaVeiculo categoria;
+
+    @NotNull
+    private EspecieVeiculo especie;
+
+    @NotNull
+    private Nacionalidade nacionalidade;
+
+    @NotNull
+    private Restricao restricao;
+
+    @NotBlank
+    @Size(max=20)
+    private String potenciaCilindradas;
+
+    @NotBlank
+    @Size(max=20)
+    private String capacidadePassageiros;
+
+    @NotBlank
+    @Size(max=20)
+    private String municipio;
+
+    @NotBlank
+    @Size(max=4)
+    private String licenciamento;
+
+    @NotBlank
+    @Size(max=255)
+    private String observacao;
+
 
 }
