@@ -44,7 +44,7 @@ public class VeiculoService {
         Proprietario proprietario = registroProprietarioService.buscarOuFalhar(novoVeiculo.getProprietario().getId());
 
         novoVeiculo.setProprietario(proprietario);
-        novoVeiculo.setStatus(StatusVeiculo.REGULAR);
+        novoVeiculo.setStatus(StatusVeiculo.EM_CIRCULACAO);
         novoVeiculo.setDataCadastro(OffsetDateTime.now());
 
         return veiculoRepository.save(novoVeiculo);

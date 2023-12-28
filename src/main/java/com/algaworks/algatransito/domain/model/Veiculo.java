@@ -24,12 +24,45 @@ public class Veiculo {
 
     private String marca;
     private String modelo;
+
+    @Enumerated(EnumType.STRING)
+    private CorVeiculo cor;
+
     private String placa;
-    private OffsetDateTime dataCadastro;
-    private OffsetDateTime dataApreensao;
+    private String renavam;
+    private String chassi;
+    private String anoFabricacaoModelo;
+
+    @Enumerated(EnumType.STRING)
+    private TipoVeiculo tipo;
+
+    private String combustivel;
+
+    @Enumerated(EnumType.STRING)
+    private CategoriaVeiculo categoria;
+
+    @Enumerated(EnumType.STRING)
+    private EspecieVeiculo especie;
+
+    @Enumerated(EnumType.STRING)
+    private Nacionalidade nacionalidade;
+
+    @Enumerated(EnumType.STRING)
+    private Restricao restricao;
+
+    private String potenciaCilindradas;
+    private String capacidadePassageiros;
+    private String municipio;
 
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
+
+    private String licenciamento;
+    private String observacao;
+    private OffsetDateTime dataCadastro;
+    private OffsetDateTime dataApreensao;
+
+
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
     private List<Autuacao> autuacoes = new ArrayList<>();
@@ -57,7 +90,7 @@ public class Veiculo {
             throw new NegocioException("O veiculo não está APREENDIDO");
         }
 
-        this.setStatus(StatusVeiculo.REGULAR);
+        this.setStatus(StatusVeiculo.EM_CIRCULACAO);
         this.setDataApreensao(null);
     }
 
