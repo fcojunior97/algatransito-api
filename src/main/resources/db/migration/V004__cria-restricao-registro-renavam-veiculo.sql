@@ -1,0 +1,1 @@
+alter table veiculo add constraint uk_renavam unique (renavam);
