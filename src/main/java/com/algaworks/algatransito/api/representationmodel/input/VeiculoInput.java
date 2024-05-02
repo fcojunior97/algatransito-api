@@ -62,9 +62,6 @@ public class VeiculoInput {
     @NotNull
     private Nacionalidade nacionalidade;
 
-    @NotNull
-    private Restricao restricao;
-
     @NotBlank
     @Size(max=20)
     private String potenciaCilindradas;

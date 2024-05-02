@@ -27,7 +27,6 @@ public class VeiculoModel {
     private CategoriaVeiculo categoria;
     private EspecieVeiculo especie;
     private Nacionalidade nacionalidade;
-    private Restricao restricao;
     private String potenciaCilindradas;
     private String capacidadePassageiros;
     private String municipio;
