@@ -47,9 +47,6 @@ public class Veiculo {
     @Enumerated(EnumType.STRING)
     private Nacionalidade nacionalidade;
 
-    @Enumerated(EnumType.STRING)
-    private Restricao restricao;
-
     private String potenciaCilindradas;
     private String capacidadePassageiros;
     private String municipio;

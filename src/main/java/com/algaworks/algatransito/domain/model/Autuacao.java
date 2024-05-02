@@ -26,6 +26,4 @@ public class Autuacao {
     private BigDecimal valorMulta;
     private OffsetDateTime dataOcorrencia;
 
-
-
 }
