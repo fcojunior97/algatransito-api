@@ -8,6 +8,7 @@ import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.model.StatusVeiculo;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -27,8 +27,8 @@ public class VeiculoInput {
     @Size(max=60)
     private String modelo;
 
-    @NotNull
-    private CorVeiculo cor;
+    @NotBlank
+    private String cor;
 
     @NotBlank
     @Pattern(regexp = "[A-Z]{3}[0-9][0-9A-Z][0-9]{2}")
@@ -46,21 +46,21 @@ public class VeiculoInput {
     @Size(max=15)
     private String anoFabricacaoModelo;
 
-    @NotNull
-    private TipoVeiculo tipo;
+    @NotBlank
+    private String tipo;
 
     @NotBlank
     @Size(max=20)
     private String combustivel;
 
-    @NotNull
-    private CategoriaVeiculo categoria;
+    @NotBlank
+    private String categoria;
 
-    @NotNull
-    private EspecieVeiculo especie;
+    @NotBlank
+    private String especie;
 
-    @NotNull
-    private Nacionalidade nacionalidade;
+    @NotBlank
+    private String nacionalidade;
 
     @NotBlank
     @Size(max=20)

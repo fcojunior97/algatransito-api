@@ -19,5 +19,6 @@ public class VeiculoDisassembler {
 
     public void copyToDomainObject(VeiculoInput veiculoInput, Veiculo veiculo) {
         modelMapper.map(veiculoInput, veiculo);
+
     }
 }

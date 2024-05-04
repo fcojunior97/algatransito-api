@@ -25,27 +25,22 @@ public class Veiculo {
     private String marca;
     private String modelo;
 
-    @Enumerated(EnumType.STRING)
-    private CorVeiculo cor;
+    private String cor;
 
     private String placa;
     private String renavam;
     private String chassi;
     private String anoFabricacaoModelo;
 
-    @Enumerated(EnumType.STRING)
-    private TipoVeiculo tipo;
+    private String tipo;
 
     private String combustivel;
 
-    @Enumerated(EnumType.STRING)
-    private CategoriaVeiculo categoria;
+    private String categoria;
 
-    @Enumerated(EnumType.STRING)
-    private EspecieVeiculo especie;
+    private String especie;
 
-    @Enumerated(EnumType.STRING)
-    private Nacionalidade nacionalidade;
+    private String nacionalidade;
 
     private String potenciaCilindradas;
     private String capacidadePassageiros;
