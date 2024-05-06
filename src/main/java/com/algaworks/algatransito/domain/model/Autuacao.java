@@ -24,6 +24,9 @@ public class Autuacao {
     @ManyToOne
     private Veiculo veiculo;
 
+    @ManyToOne
+    private Cnh cnh;
+
     private String descricao;
     private BigDecimal valorMulta;
     private OffsetDateTime dataOcorrencia;

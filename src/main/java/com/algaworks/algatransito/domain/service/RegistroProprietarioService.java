@@ -36,4 +36,9 @@ public class RegistroProprietarioService {
         return proprietarioRepository.findById(idProprietario)
                 .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse ID"));
     }
+
+    public Proprietario buscarOuFalharPorCpf(String cpf) {
+        return proprietarioRepository.findByCpf(cpf)
+                .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse CPF"));
+    }
 }

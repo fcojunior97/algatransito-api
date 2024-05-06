@@ -21,7 +21,6 @@ public class ProprietarioInput {
     @Size(max = 60)
     private String nome;
 
-    @NotBlank
     @CPF
     private String cpf;
 

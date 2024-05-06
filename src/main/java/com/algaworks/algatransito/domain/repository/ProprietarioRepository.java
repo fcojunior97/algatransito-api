@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface ProprietarioRepository extends JpaRepository<Proprietario, Long> {
 
     Optional<Proprietario> findByEmail(String email);
+    Optional<Proprietario>  findByCpf(String cpf);
 
 }

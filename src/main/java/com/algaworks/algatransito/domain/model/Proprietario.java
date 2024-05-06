@@ -13,6 +13,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.OffsetDateTime;
+import java.time.Period;
 
 
 @Getter
@@ -49,6 +50,21 @@ public class Proprietario {
     @NotBlank
     @Size(max = 20)
     private String telefone;
+
+    public int calculaIdadeProprietario() {
+
+        OffsetDateTime dataNascimento = this.getDataNascimento();
+
+        OffsetDateTime dataAtual = OffsetDateTime.now();
+
+        // Calcula a diferença entre a data atual e a data de nascimento
+        Period periodo = Period.between(dataNascimento.toLocalDate(), dataAtual.toLocalDate());
+
+        int idadeCalculada = periodo.getYears();
+
+        return idadeCalculada;
+
+    }
 
 
 }
