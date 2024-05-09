@@ -2,6 +2,7 @@ package com.algaworks.algatransito.domain.service;
 
 import com.algaworks.algatransito.api.disassembler.CnhDisassembler;
 import com.algaworks.algatransito.api.representationmodel.input.CnhInput;
+import com.algaworks.algatransito.api.representationmodel.input.CnhInputRenovacao;
 import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Cnh;
 import com.algaworks.algatransito.domain.model.Proprietario;
@@ -27,9 +28,21 @@ public class CnhService {
     private RegistroProprietarioService proprietarioService;
 
     @Transactional
-    public Cnh salvar(String cpf, Cnh cnh) {
+    public Cnh emitir(String cpf, Cnh cnh) {
 
         Cnh cnhGerada = this.gerarCnh(cpf, cnh);
+
+        return cnhRepository.save(cnhGerada);
+    }
+
+    @Transactional
+    public Cnh renovarCnh(String numeroRegistro, CnhInputRenovacao cnhInputRenovacao) {
+        Cnh cnhAtual = cnhRepository.findByNumeroRegistro(numeroRegistro);
+
+        if(cnhAtual == null) {
+            throw new NegocioException("Não foi encontrada CNH em nossa base dados com esse número de registro");
+        }
+        Cnh cnhGerada = this.renovarCnh(cnhAtual, cnhInputRenovacao);
 
         return cnhRepository.save(cnhGerada);
     }
@@ -58,6 +71,15 @@ public class CnhService {
         cnh.setValidade(cnh.definirValidade(proprietario));
 
         return cnh;
+
+    }
+
+    private Cnh renovarCnh(Cnh cnhAtual, CnhInputRenovacao cnhInputRenovacao) {
+
+        cnhAtual.setTipo("DEFINITIVA");
+        cnhAtual.setValidade(cnhAtual.definirValidade(cnhAtual.getProprietario()));
+
+        return cnhAtual;
 
     }
 
