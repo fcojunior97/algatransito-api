@@ -23,5 +23,5 @@ public class CnhModel {
     private String categoriaCnh;
     private OffsetDateTime validade;
     private String tipo;
-    private List<Autuacao> autuacoes = new ArrayList<>();
+    private List<AutuacaoModel> autuacoes = new ArrayList<>();
 }

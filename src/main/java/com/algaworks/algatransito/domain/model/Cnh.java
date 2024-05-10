@@ -1,5 +1,7 @@
 package com.algaworks.algatransito.domain.model;
 
+import com.algaworks.algatransito.api.representationmodel.AutuacaoModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +24,7 @@ public class Cnh {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "proprietario_id")
     private Proprietario proprietario;
@@ -43,7 +46,6 @@ public class Cnh {
         OffsetDateTime validade = OffsetDateTime.now();
 
         int idadeProprietario = proprietario.calculaIdadeProprietario();
-        System.out.println("Idade do proprietario: " + idadeProprietario);
 
         if(this.getTipo().equals("PERMISSAO")) {
             validade = dataAtual.plusYears(1);

@@ -20,7 +20,7 @@ public class ApreensaoVeiculoController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removerApreender(@PathVariable Long veiculoId){
+    public void removerApreencao(@PathVariable Long veiculoId){
         apreensaoVeiculoService.removerApreensao(veiculoId);
     }
 }

@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.api.representationmodel.input;
 
+import com.algaworks.algatransito.domain.model.Cnh;
 import com.algaworks.algatransito.domain.model.Endereco;
 import jakarta.persistence.Embedded;
 import jakarta.validation.Valid;
@@ -39,4 +40,5 @@ public class ProprietarioInput {
     @NotBlank
     @Size(max = 20)
     private String telefone;
+
 }

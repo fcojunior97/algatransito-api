@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.api.representationmodel;
 
+import com.algaworks.algatransito.domain.model.Cnh;
 import com.algaworks.algatransito.domain.model.Endereco;
 import jakarta.persistence.Embedded;
 import jakarta.validation.Valid;
@@ -23,5 +24,6 @@ public class ProprietarioModel {
     private Endereco endereco;
     private String email;
     private String telefone;
+    private CnhModel cnh;
 
 }

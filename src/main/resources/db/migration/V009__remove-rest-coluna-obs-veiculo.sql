@@ -1,0 +1,1 @@
+ALTER TABLE veiculo MODIFY COLUMN observacao varchar(255) null;

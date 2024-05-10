@@ -63,6 +63,10 @@ public class VeiculoInput {
     private String nacionalidade;
 
     @NotBlank
+    @Size(max = 12)
+    private String restricao;
+
+    @NotBlank
     @Size(max=20)
     private String potenciaCilindradas;
 
@@ -78,7 +82,6 @@ public class VeiculoInput {
     @Size(max=4)
     private String licenciamento;
 
-    @NotBlank
     @Size(max=255)
     private String observacao;
 

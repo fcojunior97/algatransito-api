@@ -2,6 +2,8 @@ package com.algaworks.algatransito.domain.model;
 
 import com.algaworks.algatransito.domain.exception.NegocioException;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.time.OffsetDateTime;
@@ -41,6 +43,8 @@ public class Veiculo {
     private String especie;
 
     private String nacionalidade;
+
+    private String restricao;
 
     private String potenciaCilindradas;
     private String capacidadePassageiros;

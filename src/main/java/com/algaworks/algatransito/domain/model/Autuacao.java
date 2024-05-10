@@ -24,6 +24,7 @@ public class Autuacao {
     @ManyToOne
     private Veiculo veiculo;
 
+    @JsonIgnore
     @ManyToOne
     private Cnh cnh;
 

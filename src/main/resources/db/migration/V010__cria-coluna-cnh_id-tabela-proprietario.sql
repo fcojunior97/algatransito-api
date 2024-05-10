@@ -1,0 +1,1 @@
+ALTER TABLE proprietario ADD cnh_id bigint;

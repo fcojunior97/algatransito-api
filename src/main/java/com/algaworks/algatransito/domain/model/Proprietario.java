@@ -51,6 +51,10 @@ public class Proprietario {
     @Size(max = 20)
     private String telefone;
 
+    @OneToOne
+    @JoinColumn(name = "cnh_id")
+    private Cnh cnh;
+
     public int calculaIdadeProprietario() {
 
         OffsetDateTime dataNascimento = this.getDataNascimento();

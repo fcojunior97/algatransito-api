@@ -1,6 +1,9 @@
 package com.algaworks.algatransito.api.representationmodel;
 
 import com.algaworks.algatransito.domain.model.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -38,6 +41,8 @@ public class VeiculoModel {
 
     private String nacionalidade;
 
+    private String restricao;
+
     private String potenciaCilindradas;
     private String capacidadePassageiros;
     private String municipio;
@@ -49,5 +54,5 @@ public class VeiculoModel {
     private OffsetDateTime dataCadastro;
     private OffsetDateTime dataApreensao;
 
-    private List<Autuacao> autuacoes = new ArrayList<>();
+    private List<AutuacaoModel> autuacoes = new ArrayList<>();
 }
