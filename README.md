@@ -56,7 +56,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ## Como executar o projeto
 
-### Clonar repositório:
+### Clonar repositório
 
 Clone o repositório git com o seguinte comando:
 
