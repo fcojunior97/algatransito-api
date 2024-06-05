@@ -56,11 +56,19 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 ## Como executar o projeto
 
+### Clonar repositório:
+
+Clone o repositório git com o seguinte comando:
+
+```
+git clone https://github.com/fcojunior97/algatransito-api.git
+```
+
 ### Empacotando
 Você pode está gerando um `jar` do projeto para executar a API. Para isso, você deve executar o seguinte comando:
 
 ```
-mvn package
+mvn clean package
 ```
 
 Ele irá gerar um pacote `.jar` no seguinte diretorio `\algatransito-api\target` como mostrado no exemplo: `algatransito-api-0.0.1-SNAPSHOT`. 
