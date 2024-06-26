@@ -2,6 +2,7 @@ package com.algaworks.algatransito.api.representationmodel;
 
 import com.algaworks.algatransito.domain.model.Cnh;
 import com.algaworks.algatransito.domain.model.Endereco;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Embedded;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -24,6 +25,7 @@ public class ProprietarioModel {
     private Endereco endereco;
     private String email;
     private String telefone;
-    private CnhModel cnh;
+
+    private CnhResumoModel cnh;
 
 }

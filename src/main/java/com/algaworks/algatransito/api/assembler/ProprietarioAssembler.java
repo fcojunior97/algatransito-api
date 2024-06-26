@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.api.assembler;
 
+import com.algaworks.algatransito.api.representationmodel.CnhModel;
 import com.algaworks.algatransito.api.representationmodel.ProprietarioModel;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import org.modelmapper.ModelMapper;

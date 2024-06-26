@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,8 +17,9 @@ import java.time.OffsetDateTime;
 import java.time.Period;
 
 
-@Getter
-@Setter
+//@Getter
+//@Setter
+@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Proprietario {
@@ -69,6 +71,8 @@ public class Proprietario {
         return idadeCalculada;
 
     }
+
+
 
 
 }

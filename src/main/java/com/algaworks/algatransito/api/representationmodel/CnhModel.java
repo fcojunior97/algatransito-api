@@ -2,6 +2,7 @@ package com.algaworks.algatransito.api.representationmodel;
 
 import com.algaworks.algatransito.domain.model.Autuacao;
 import com.algaworks.algatransito.domain.model.Proprietario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,11 +18,13 @@ import java.util.List;
 @Setter
 public class CnhModel {
 
+
     private Long id;
     private ProprietarioResumoModel proprietario;
     private String numeroRegistro;
     private String categoriaCnh;
     private OffsetDateTime validade;
     private String tipo;
-    private List<AutuacaoModel> autuacoes = new ArrayList<>();
+    private List<AutuacaoResumoModel> autuacoes = new ArrayList<>();
+
 }

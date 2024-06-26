@@ -19,7 +19,7 @@ public class VeiculoModel {
 
     private Long id;
 
-    private Proprietario proprietario;
+    private ProprietarioModel proprietario;
 
     private String marca;
     private String modelo;
@@ -54,5 +54,6 @@ public class VeiculoModel {
     private OffsetDateTime dataCadastro;
     private OffsetDateTime dataApreensao;
 
+    @JsonIgnore
     private List<AutuacaoModel> autuacoes = new ArrayList<>();
 }

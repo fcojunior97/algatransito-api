@@ -32,14 +32,15 @@ public class ProprietarioController {
     @Autowired
     private ProprietarioDisassembler proprietarioDisassembler;
 
-    @GetMapping()
+    @GetMapping
     public List<ProprietarioModel> listar() {
         return proprietarioAssembler.toCollectionModel(proprietarioRepository.findAll());
     }
 
-    @GetMapping("/{proprietarioId}")
-    public ResponseEntity<ProprietarioModel> buscar(@PathVariable Long proprietarioId) {
-        return proprietarioRepository.findById(proprietarioId)
+
+    @GetMapping("/{cpf}")
+    public ResponseEntity<ProprietarioModel> buscarProprietarioPorCpf(@PathVariable String cpf) {
+        return proprietarioRepository.findByCpf(cpf)
                 .map(proprietario -> proprietarioAssembler.toModel(proprietario))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -65,7 +66,7 @@ public class ProprietarioController {
 
     }
 
-    @DeleteMapping("/{proprietarioId}")
+    @DeleteMapping("/{cpf}")
     public ResponseEntity<Void> remover(@PathVariable Long proprietarioId) {
 
         if(!proprietarioRepository.existsById(proprietarioId)) {

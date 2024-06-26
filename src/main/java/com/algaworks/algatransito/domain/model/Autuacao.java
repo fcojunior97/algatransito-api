@@ -20,11 +20,9 @@ public class Autuacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
     @ManyToOne
     private Veiculo veiculo;
 
-    @JsonIgnore
     @ManyToOne
     private Cnh cnh;
 
