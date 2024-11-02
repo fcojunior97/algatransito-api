@@ -1,5 +1,5 @@
 create table tipo_cnh (
-	id bigint not null auto_increment,
+	id BIGSERIAL not null,
     tipo varchar(20) not null,
 
     primary key (id)

@@ -1,1 +1,3 @@
-ALTER TABLE veiculo MODIFY COLUMN observacao varchar(255) null;
+ALTER TABLE veiculo
+    ALTER COLUMN observacao SET DATA TYPE VARCHAR(255),
+    ALTER COLUMN observacao DROP NOT NULL;

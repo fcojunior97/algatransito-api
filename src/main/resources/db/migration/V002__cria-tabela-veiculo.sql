@@ -1,5 +1,5 @@
 create table veiculo (
-	id bigint not null auto_increment,
+	id BIGSERIAL not null,
     proprietario_id bigint not null,
     marca varchar(20) not null,
     modelo varchar(60) not null,
@@ -20,8 +20,8 @@ create table veiculo (
     status varchar(20) not null,
     licenciamento varchar(4) not null,
     observacao varchar(255) not null,
-    data_cadastro datetime not null,
-    data_apreensao datetime,
+    data_cadastro TIMESTAMP  not null,
+    data_apreensao TIMESTAMP,
 
     primary key (id)
 );

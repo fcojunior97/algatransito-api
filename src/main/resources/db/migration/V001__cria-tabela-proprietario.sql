@@ -1,5 +1,5 @@
 create table proprietario (
-    id bigint not null auto_increment,
+    id BIGSERIAL not null,
     nome varchar(60) not null,
     cpf varchar(11) not null,
     data_nascimento date not null,

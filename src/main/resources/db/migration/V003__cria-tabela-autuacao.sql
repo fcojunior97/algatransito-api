@@ -1,9 +1,9 @@
 create table autuacao (
-	id bigint not null auto_increment,
+	id BIGSERIAL not null,
     veiculo_id bigint not null,
     descricao text not null,
     valor_multa decimal(10, 2) not null,
-    data_ocorrencia datetime not null,
+    data_ocorrencia TIMESTAMP not null,
 
     primary key (id)
 );

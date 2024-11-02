@@ -1,5 +1,5 @@
 create table cnh (
-	id bigint not null auto_increment,
+	id BIGSERIAL not null,
     proprietario_id bigint not null,
     numero_registro varchar(11) not null,
     categoria_cnh varchar(5) not null,
