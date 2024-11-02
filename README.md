@@ -5,7 +5,7 @@ Esse projeto foi sendo desenvolvido com base no curso Ignição Spring Rest, pro
 Inicialmente o projeto consistiu no desenvolvimento de endpoints básicos e construção de algumas entidades de dominio, tais como: Autuacao, Proprietario, Veiculo; Atualmente o projeto está em denvolvimento, onde estão sendo integradas novas funcionalidades e recursos a fim de provisionar uma API funcional e robusta. 
 
 ## Importante! ⚠️ <br>
-Esse projeto encontra-se concluido. Darei continuidade em novos projetos.
+Esse projeto encontra-se em fase de evolução. Darei continuidade em atualizações e integração de novas features.
 
 ## Endpoints
 
