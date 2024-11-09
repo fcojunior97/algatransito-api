@@ -4,7 +4,6 @@ import com.algaworks.algatransito.api.assembler.AutuacaoAssembler;
 import com.algaworks.algatransito.api.disassembler.AutuacaoDisassembler;
 import com.algaworks.algatransito.api.representationmodel.AutuacaoModel;
 import com.algaworks.algatransito.api.representationmodel.input.AutuacaoInput;
-import com.algaworks.algatransito.domain.model.Autuacao;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.service.AutuacaoService;
 import com.algaworks.algatransito.domain.service.VeiculoService;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/veiculos/{veiculoId}/autuacoes")
+@RequestMapping("/veiculos/{placaVeiculo}/autuacoes")
 public class AutuacaoController {
 
     @Autowired
@@ -31,17 +30,19 @@ public class AutuacaoController {
     @Autowired
     private VeiculoService veiculoService;
 
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AutuacaoModel registrar(@PathVariable Long veiculoId,
+    public AutuacaoModel registrar(@PathVariable String placaVeiculo,
                                    @Valid @RequestBody AutuacaoInput autuacaoInput) {
         var novaAtuacao = autuacaoDisassembler.toEntity(autuacaoInput);
-        return autuacaoAssembler.toModel(autuacaoService.registrar(veiculoId, novaAtuacao));
+        return autuacaoAssembler.toModel(autuacaoService.registrar(autuacaoInput.getCondutor(), placaVeiculo, novaAtuacao));
     }
 
+
     @GetMapping
-    public List<AutuacaoModel> listarAutuacoes(@PathVariable Long veiculoId) {
-        Veiculo veiculo =  veiculoService.buscarOuFalhar(veiculoId);
+    public List<AutuacaoModel> listarAutuacoes(@PathVariable String placaVeiculo) {
+        Veiculo veiculo =  veiculoService.buscarOuFalharPorPlaca(placaVeiculo);
         return autuacaoAssembler.toCollectionModel(veiculo.getAutuacoes());
     }
 }

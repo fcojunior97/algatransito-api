@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class RegistroProprietarioService {
@@ -37,8 +39,7 @@ public class RegistroProprietarioService {
                 .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse ID"));
     }
 
-    public Proprietario buscarOuFalharPorCpf(String cpf) {
-        return proprietarioRepository.findByCpf(cpf)
-                .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse CPF"));
+    public Optional<Proprietario> buscarOuFalharPorCpf(String cpf) {
+        return proprietarioRepository.findByCpf(cpf);
     }
 }

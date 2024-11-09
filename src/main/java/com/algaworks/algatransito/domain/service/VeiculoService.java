@@ -61,4 +61,9 @@ public class VeiculoService {
         return veiculoRepository.findById(veiculoId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Veiculo não encontrado com esse ID"));
     }
+
+    public Veiculo buscarOuFalharPorPlaca(String placa) {
+        return veiculoRepository.findByPlaca(placa)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Veiculo não encontrado com essa identificação: " + placa));
+    }
 }
