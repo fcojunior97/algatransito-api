@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class RegistroProprietarioService {
@@ -28,8 +30,8 @@ public class RegistroProprietarioService {
     }
 
     @Transactional
-    public void excluir(Long proprietarioId) {
-        proprietarioRepository.deleteById(proprietarioId);
+    public void excluir(String cpf) {
+        proprietarioRepository.deleteByCpf(cpf);
     }
 
     public Proprietario buscarOuFalhar(Long idProprietario) {
@@ -37,8 +39,7 @@ public class RegistroProprietarioService {
                 .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse ID"));
     }
 
-    public Proprietario buscarOuFalharPorCpf(String cpf) {
-        return proprietarioRepository.findByCpf(cpf)
-                .orElseThrow(() -> new NegocioException("Proprietario não encontrado com esse CPF"));
+    public Optional<Proprietario> buscarOuFalharPorCpf(String cpf) {
+        return proprietarioRepository.findByCpf(cpf);
     }
 }

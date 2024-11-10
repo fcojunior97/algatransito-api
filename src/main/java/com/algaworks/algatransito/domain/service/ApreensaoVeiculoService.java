@@ -12,14 +12,14 @@ public class ApreensaoVeiculoService {
     private VeiculoService veiculoService;
 
     @Transactional
-    public void apreender(Long veiculoId) {
-        Veiculo veiculo = veiculoService.buscarOuFalhar(veiculoId);
+    public void apreender(String placaVeiculo) {
+        Veiculo veiculo = veiculoService.buscarOuFalharPorPlaca(placaVeiculo);
         veiculo.apreender();
     }
 
     @Transactional
-    public void removerApreensao(Long veiculoId) {
-        Veiculo veiculo = veiculoService.buscarOuFalhar(veiculoId);
+    public void removerApreensao(String placaVeiculo) {
+        Veiculo veiculo = veiculoService.buscarOuFalharPorPlaca(placaVeiculo);
         veiculo.removerApreensao();
     }
 

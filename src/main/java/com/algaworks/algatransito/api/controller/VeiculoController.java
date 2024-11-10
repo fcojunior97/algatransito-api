@@ -36,9 +36,9 @@ public class VeiculoController {
         return veiculoAssembler.toCollectionModel(veiculoRepository.findAll());
     }
 
-    @GetMapping("/{veiculoId}")
-    public ResponseEntity<VeiculoModel> buscar (@PathVariable Long veiculoId){
-        return veiculoRepository.findById(veiculoId)
+    @GetMapping("/{placaVeiculo}")
+    public ResponseEntity<VeiculoModel> buscar (@PathVariable String placaVeiculo){
+        return veiculoRepository.findByPlaca(placaVeiculo)
                 .map(veiculo -> veiculoAssembler.toModel(veiculo))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -51,9 +51,9 @@ public class VeiculoController {
         return veiculoAssembler.toModel(veiculoService.cadastrar(novoVeiculo));
     }
 
-    @PutMapping("/{veiculoId}")
-    public VeiculoModel atualizar (@PathVariable Long veiculoId, @RequestBody @Valid VeiculoInput veiculoInput){
-        Veiculo veiculoAtual = veiculoService.buscarOuFalhar(veiculoId);
+    @PutMapping("/{placaVeiculo}")
+    public VeiculoModel atualizar (@PathVariable String placaVeiculo, @RequestBody @Valid VeiculoInput veiculoInput){
+        Veiculo veiculoAtual = veiculoService.buscarOuFalharPorPlaca(placaVeiculo);
         Veiculo veiculoAtualizado = veiculoService.atualizarDadosVeiculo(veiculoInput, veiculoAtual);
 
         return veiculoAssembler.toModel(veiculoAtualizado);

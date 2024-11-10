@@ -18,4 +18,6 @@ public class AutuacaoInput {
     @NotNull
     @Positive
     private BigDecimal valorMulta;
+
+    private String condutor;
 }
