@@ -30,8 +30,8 @@ public class RegistroProprietarioService {
     }
 
     @Transactional
-    public void excluir(Long proprietarioId) {
-        proprietarioRepository.deleteById(proprietarioId);
+    public void excluir(String cpf) {
+        proprietarioRepository.deleteByCpf(cpf);
     }
 
     public Proprietario buscarOuFalhar(Long idProprietario) {

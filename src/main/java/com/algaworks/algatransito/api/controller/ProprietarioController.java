@@ -67,13 +67,13 @@ public class ProprietarioController {
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Void> remover(@PathVariable Long proprietarioId) {
+    public ResponseEntity<Void> remover(@PathVariable String cpf) {
 
-        if(!proprietarioRepository.existsById(proprietarioId)) {
+        if(proprietarioRepository.findByCpf(cpf).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        registroProprietarioService.excluir(proprietarioId);
+        registroProprietarioService.excluir(cpf);
         return ResponseEntity.noContent().build();
 
     }
