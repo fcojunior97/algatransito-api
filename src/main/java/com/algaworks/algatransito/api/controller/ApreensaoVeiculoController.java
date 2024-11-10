@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(("/veiculos/{veiculoId}/apreensao"))
+@RequestMapping(("/veiculos/{placaVeiculo}/apreensao"))
 public class ApreensaoVeiculoController {
 
     @Autowired
@@ -14,13 +14,11 @@ public class ApreensaoVeiculoController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void apreender(@PathVariable Long veiculoId){
-        apreensaoVeiculoService.apreender(veiculoId);
+    public void apreender(@PathVariable String placaVeiculo){
+        apreensaoVeiculoService.apreender(placaVeiculo);
     }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removerApreencao(@PathVariable Long veiculoId){
-        apreensaoVeiculoService.removerApreensao(veiculoId);
-    }
+    public void removerApreencao(@PathVariable String placaVeiculo){ apreensaoVeiculoService.removerApreensao(placaVeiculo); }
 }
