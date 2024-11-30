@@ -4,7 +4,6 @@ import com.algaworks.algatransito.api.assembler.ProprietarioAssembler;
 import com.algaworks.algatransito.api.disassembler.ProprietarioDisassembler;
 import com.algaworks.algatransito.api.representationmodel.ProprietarioModel;
 import com.algaworks.algatransito.api.representationmodel.input.ProprietarioInput;
-import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import com.algaworks.algatransito.domain.service.RegistroProprietarioService;
@@ -15,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/proprietarios")
@@ -53,14 +53,17 @@ public class ProprietarioController {
         return proprietarioAssembler.toModel(registroProprietarioService.salvar(proprietario));
     }
 
-    @PutMapping("/{proprietarioId}")
-    public ResponseEntity<Proprietario> atualizar(@PathVariable Long proprietarioId, @RequestBody @Valid Proprietario proprietario) {
+    @PutMapping("/{cpf}")
+    public ResponseEntity<Proprietario> atualizar(@PathVariable String cpf, @RequestBody @Valid ProprietarioInput proprietarioInput) {
 
-        if(!proprietarioRepository.existsById(proprietarioId)) {
+        Optional<Proprietario> proprietarioExistente = proprietarioRepository.findByCpf(cpf);
+
+        if(proprietarioExistente.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        proprietario.setId(proprietarioId);
+        Proprietario proprietario = proprietarioDisassembler.toEntity(proprietarioInput);
+        proprietario.setId(proprietarioExistente.get().getId());
         Proprietario proprietarioAtualizado = registroProprietarioService.salvar(proprietario);
         return ResponseEntity.ok().body(proprietarioAtualizado);
 

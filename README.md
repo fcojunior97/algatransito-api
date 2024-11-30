@@ -15,14 +15,14 @@ Esta API fornece os seguintes endpoints:
 - Lista todos os proprietarios: `GET/proprietarios`
 - Cadastra proprietario: `POST/proprietarios`
 - Busca proprietario por cpf: `GET/proprietarios/{cpf}`
-- Atualiza dados de um proprietario: `PUT/proprietarios/proprietarioId`
-- Deleta um proprietario: `DELETE/proprietarios/{proprietarioId}`
+- Atualiza dados de um proprietario: `PUT/proprietarios/{cpf}`
+- Deleta um proprietario: `DELETE/proprietarios/{cpf}`
 
 #### Veiculo
 - Lista todos os veiculos:  `GET/veiculos`
-- Busca veiculo por ID: `GET/veiculos/1`
+- Busca veiculo por placa: `GET/veiculos/{placaVeiculo}`
 - Cadastra veiculo: `POST/veiculos`
-- Atualiza cadastro de veiculos: `PUT/veiculos/1`
+- Atualiza cadastro de veiculos: `PUT/veiculos/{placaVeiculo}`
 
 #### Cnh
 - Lista todas as cnhs:  `GET/cnhs`
@@ -33,13 +33,13 @@ Esta API fornece os seguintes endpoints:
 
 #### Autuação
 
-- Listar autuações:  `GET/veiculos/{veiculoId}/autuacoes`
-- Registrar autuação:  `POST/veiculos/{veiculoId}/autuacoes`
+- Listar autuações:  `GET/veiculos/{placaVeiculo}/autuacoes`
+- Registrar autuação:  `POST/veiculos/{placaVeiculo}/autuacoes`
 
 #### Apreensão
 
-- Apreender veiculo:  `PUT/veiculos/{veiculoId}/apreensao`
-- Remover apreensão:  `DELETE/veiculos/{veiculoId}/apreensao`
+- Apreender veiculo:  `PUT/veiculos/{placaVeiculo}/apreensao`
+- Remover apreensão:  `DELETE/veiculos/{placaVeiculo}/apreensao`
 
 
 ## Tecnologias usadas
@@ -51,7 +51,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - **Maven**
 - **Lombok**
 - **Flyway** 
-- **MySQL**
+- **Postgres**
 - **ModelMapper 3.1.1**
 
 ## Como executar o projeto

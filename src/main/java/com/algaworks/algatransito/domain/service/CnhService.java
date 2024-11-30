@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -64,11 +65,11 @@ public class CnhService {
     }
 
     private Cnh gerarCnh(String cpf, Cnh cnh) {
-        Proprietario proprietario = proprietarioService.buscarOuFalharPorCpf(cpf);
-        cnh.setProprietario(proprietario);
+        Optional<Proprietario> proprietario = proprietarioService.buscarOuFalharPorCpf(cpf);
+        cnh.setProprietario(proprietario.get());
 
         cnh.setNumeroRegistro(UniqueRandomnNumRegistroCNHGenerator());
-        cnh.setValidade(cnh.definirValidade(proprietario));
+        cnh.setValidade(cnh.definirValidade(proprietario.get()));
 
         return cnh;
 
