@@ -9,16 +9,11 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.OffsetDateTime;
 import java.time.Period;
 
-
-//@Getter
-//@Setter
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
@@ -71,8 +66,5 @@ public class Proprietario {
         return idadeCalculada;
 
     }
-
-
-
 
 }
