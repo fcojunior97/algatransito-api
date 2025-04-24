@@ -8,7 +8,6 @@ import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.model.StatusVeiculo;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,17 +29,8 @@ public class VeiculoService {
     @Transactional
     public Veiculo cadastrar(Veiculo novoVeiculo) {
 
-        if(novoVeiculo.getId() != null) {
-            throw new NegocioException("Veiculo a ser cadastrado não deve possuir um código");
-        }
-
-        boolean placaCadastrada = veiculoRepository.findByPlaca(novoVeiculo.getPlaca())
-                .filter(veiculo-> !veiculo.equals(novoVeiculo))
-                .isPresent();
-
-        if(placaCadastrada) {
-            throw new NegocioException("Este veiculo não pode ser cadastrado, pois já existe veiculo cadastrado com essa placa");
-        }
+        validarSeNovoVeiculoNaoPossuiId(novoVeiculo);
+        validarSeJaExisteVeiculoComMesmaPlaca(novoVeiculo);
 
         Proprietario proprietario = registroProprietarioService.buscarOuFalhar(novoVeiculo.getProprietario().getId());
 
@@ -65,5 +55,21 @@ public class VeiculoService {
     public Veiculo buscarOuFalharPorPlaca(String placa) {
         return veiculoRepository.findByPlaca(placa)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Veiculo não encontrado com essa identificação: " + placa));
+    }
+
+    private void validarSeNovoVeiculoNaoPossuiId(Veiculo novoVeiculo) {
+        if(novoVeiculo.getId() != null) {
+            throw new NegocioException("Veiculo a ser cadastrado não deve possuir um código");
+        }
+    }
+
+    private void validarSeJaExisteVeiculoComMesmaPlaca (Veiculo novoVeiculo) {
+        boolean placaCadastrada = veiculoRepository.findByPlaca(novoVeiculo.getPlaca())
+                .filter(veiculo-> !veiculo.equals(novoVeiculo))
+                .isPresent();
+
+        if(placaCadastrada) {
+            throw new NegocioException("Este veiculo não pode ser cadastrado, pois já existe veiculo cadastrado com essa placa");
+        }
     }
 }
